@@ -32,7 +32,7 @@ public class SparkRestClient implements RequestOptionsSpecification {
 
     private String masterHost;
 
-    private String masterApiRoot;
+    private String masterApiRoot = "";
 
     private ClusterMode clusterMode;
 
@@ -43,7 +43,11 @@ public class SparkRestClient implements RequestOptionsSpecification {
     private HttpClient client;
 
     String getMasterUrl() {
+      if(masterApiRoot == null || masterApiRoot.length() ==0) {
+        return masterHost + ":" + masterPort;
+      } else {
         return masterHost + ":" + masterPort + "/" + masterApiRoot;
+      }
     }
 
     public static SparkRestClientBuilder builder() {
