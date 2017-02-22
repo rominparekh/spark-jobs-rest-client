@@ -43,11 +43,11 @@ public class SparkRestClient implements RequestOptionsSpecification {
     private HttpClient client;
 
     String getMasterUrl() {
-      if(masterApiRoot == null || masterApiRoot.length() ==0) {
-        return masterHost + ":" + masterPort;
-      } else {
-        return masterHost + ":" + masterPort + "/" + masterApiRoot;
-      }
+        if (masterApiRoot == null || masterApiRoot.isEmpty()) {
+            return masterHost + ":" + masterPort;
+        } else {
+            return masterHost + ":" + masterPort + "/" + masterApiRoot;
+        }
     }
 
     public static SparkRestClientBuilder builder() {

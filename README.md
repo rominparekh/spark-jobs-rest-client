@@ -13,8 +13,13 @@ This project is provides a Fluent utility Http client to interact with Spark Sta
 <dependency>
     <groupId>com.github.ywilkof</groupId>
     <artifactId>spark-jobs-rest-client</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
 </dependency>
+```
+
+# SBT
+```
+"com.github.ywilkof" % "spark-jobs-rest-client" % "1.3.2"
 ```
 
 # Requirements
@@ -27,7 +32,7 @@ In order to issue requests to a Spark cluster, a client has to be created.
 The client has several configurations, which will be used across all the requests issued from it.
 Master host and Spark Version are required and the rest of the fields have sensible defaults.
 
-```` java
+``` java
 SparkRestClient.builder()
     .masterHost("localhost")
     .sparkVersion("1.5.0")
@@ -80,6 +85,18 @@ Following is a basic job status request:
 final DriverState driverState = sparkRestClient
     .checkJobStatus()
     .withSubmissionId(submissionId);
+```
+
+If the location of the driver running is of interest, use `withSubmissionIdFullResponse`
+which includes the ip and port of the worker executing the driver:
+
+``` java 
+JobStatusResponse jobStatus = 
+   sparkRestClient
+    .checkJobStatus()
+    .withSubmissionIdFullResponse(submissionId);
+    
+ System.out.println(jobStatus.workerHostPort);
 ```
 
 ## Killing A Job
