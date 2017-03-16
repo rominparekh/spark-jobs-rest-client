@@ -32,7 +32,7 @@ public class SparkRestClient implements RequestOptionsSpecification {
 
     private String masterHost;
 
-    private String masterApiRoot;
+    private String masterApiRoot = "";
 
     private ClusterMode clusterMode;
 
